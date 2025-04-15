@@ -1,0 +1,225 @@
+/* Main container layout */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    color: white;
+}
+
+#main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+#main-content {
+    display: flex;
+    min-height: 100vh;
+}
+
+#my-bookings-btn {
+    padding: 10px 15px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 999;
+  }
+  
+
+/* Sidebar (filter container) */
+.sidebar {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #2b2a3d;
+    padding: 1.5rem;
+    color: white;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: #f5a25d;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar input[type="checkbox"] {
+    margin-right: 0.8rem;
+    accent-color: #f5a25d;
+}
+
+/* Main content area (movie container) */
+.main-content {
+    flex: 1; /* Takes remaining space */
+    padding: 2rem;
+    background-color: #1a1a2e;
+}
+
+.main-content h1 {
+    color: #f5a25d;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual movie cards */
+.card {
+    background-color: #2b2a3d;
+    border-radius: 8px;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #f5a25d;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #ccc;
+}
+
+.card .price {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.book-btn {
+    background-color: #f5a25d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.book-btn:hover {
+    background-color: #e38b40;
+}
+
+/* Message Container */
+#message-container {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #3b2f2f; 
+    border-left: 5px solid #ff5c5c;
+    color: #ffb3b3;
+    font-weight: bold;
+    border-radius: 8px;
+    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+#message-container.show {
+    display: block;
+}
+
+/* Add this animation for attention-grabbing effect */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 92, 92, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 92, 92, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 92, 92, 0); }
+}
+
+/* Update the modal error message styling */
+#modal-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #3b2f2f;
+    color: #ffb3b3;
+    border-left: 4px solid #ff5c5c;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+}
+
+#modal-message.show {
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #1a1a2e;
+    ;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;          
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

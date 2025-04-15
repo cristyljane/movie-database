@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookings</title>
+    <style>
+        body { background: #121122; color: white; font-family: sans-serif; padding: 20px; }
+        .booking-card {
+            background: #1e1e30;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .booking-card button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Bookings</h2>
+    <div id="bookings-container">Loading bookings...</div>
+
+    <script>
+        async function fetchBookings() {
+            const res = await fetch('http://localhost:3000/bookings');
+            const bookings = await res.json();
+
+            const container = document.getElementById('bookings-container');
+            container.innerHTML = '';
+
+            if (bookings.length === 0) {
+                container.innerHTML = '<p>No bookings found.</p>';
+                return;
+            }
+
+            bookings.forEach(booking => {
+                const div = document.createElement('div');
+                div.className = 'booking-card';
+                div.innerHTML = `
+                    <p><strong>Movie:</strong> ${booking.movieTitle}</p>
+                    <p><strong>Name:</strong> ${booking.customerName}</p>
+                    <p><strong>Date:</strong> ${new Date(booking.bookingDate).toLocaleString()}</p>
+                    <button onclick="deleteBooking(${booking.id})">Delete</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        async function deleteBooking(id) {
+            const confirmDelete = confirm('Are you sure you want to delete this booking?');
+            if (!confirmDelete) return;
+
+            const res = await fetch(`http://localhost:3000/cancel/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                alert('Booking deleted');
+                fetchBookings();
+            } else {
+                alert('Failed to delete booking');
+            }
+        }
+
+        fetchBookings();
+    </script>
+</body>
+</html>

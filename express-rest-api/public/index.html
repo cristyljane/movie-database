@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Movie Database</title>
+    <link rel="stylesheet" href="styles.css" />
+    
+</head>
+<body>
+        <!-- My Bookings Button -->
+    <div style="position: absolute; top: 20px; right: 30px; z-index: 999;">
+        <button id="my-bookings-btn" onclick="window.location.href='bookings.html'">
+            My Bookings
+        </button>
+    </div>
+
+    <div id="main-container">  <!-- Added main container div -->
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li><input type="checkbox" value="Romantic Comedy"> Romantic Comedy</li>
+                <li><input type="checkbox" value="Science Fiction"> Science Fiction</li>
+                <li><input type="checkbox" value="Animation"> Animation</li>
+            </ul>
+            <button id="apply-filters">Apply Filters</button>
+        </div>
+
+        <div class="main-content">  
+            <h1>Now Showing...</h1>
+            <div id="movie-container"></div>
+            <div id="message-container"></div>
+        </div>
+    </div>
+
+    <div id="booking-modal" class="modal" role="dialog" aria-labelledby="modal-movie-title">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close booking modal">&times;</span>
+            <h3>Book Tickets for <span id="modal-movie-title"></span></h3>
+            <label for="customer-name">Your Name:</label>
+            <input type="text" id="customer-name" required>
+            <button id="confirm-booking-btn">Book Now</button>
+            <div id="modal-message"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
